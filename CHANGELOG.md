@@ -7,6 +7,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- **EventBridge — `PutEvents` to a bus ARN in another region** — an entry naming an event bus ARN in a region other than the request's failed on its own with `ResourceNotFoundException`. AWS refuses the whole request instead: it answered 400 `ValidationException` "Cross-region api call is not allowed." for a bus in the caller's own account (captured on AWS). `PutEvents` now answers the same, before any entry is delivered. Contributed by @chandra-purbia.
+
 ## [1.5.35] — 2026-10-30
 
 ### Added
